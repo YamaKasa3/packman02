@@ -16,6 +16,8 @@ public class MoveEvent {
 	private Scene scene;
 	private Label pointLabel;
 	private Timer timer;
+	private Label damageLabel;
+	private ImageView monsImgView;
 	private int []keyState = {0, 0, 0, 0};
 	public MoveEvent() {
 		Map map = new Map();
@@ -25,14 +27,15 @@ public class MoveEvent {
 	}
 	public void setMoveEvent(KeyEvent event, ImageView playerImgView,
 			Group pointGroup,Label pointLabel,
-			Timer timer, Scene scene) {
+			Timer timer, Label damageLabel, ImageView monsImgView,Scene scene) {
 		this.event = event;
 		this.playerImgView = playerImgView;
 		this.pointGroup = pointGroup;
 		this.pointLabel = pointLabel;
 		this.timer = timer;
+		this.damageLabel = damageLabel;
 		this.scene = scene;
-
+		this.monsImgView = monsImgView;
 		playerMove();
 		pointEvent();
 	}
@@ -71,6 +74,11 @@ public class MoveEvent {
 		if(isCheckMove(i, j)) {
 			playerImgView.setLayoutX(playerImgView.getLayoutX() + 32 * j);
 			playerImgView.setLayoutY(playerImgView.getLayoutY() + 32 * i);
+		}
+		if(playerImgView.getLayoutX() == monsImgView.getLayoutX()
+				&& playerImgView.getLayoutY() == monsImgView.getLayoutY()) {
+			int temp = Integer.parseInt(damageLabel.getText()) + 1;
+			damageLabel.setText(Integer.toString(temp));
 		}
 	}
 //		String s = event.getCode().toString();
@@ -119,7 +127,7 @@ public class MoveEvent {
 					timer.stopTimer();
 					Label timeLabel = timer.getTimeLabel();
 					scene.setOnKeyPressed(null);
-					ResultScene rs = new ResultScene(scene, timeLabel);
+					ResultScene rs = new ResultScene(scene, timeLabel, damageLabel);
 					rs.startResult();
 				}
 				break;

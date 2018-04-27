@@ -40,8 +40,16 @@ public class GameScene {
 		HBox hBox2 = new HBox();
 		hBox2.getChildren().addAll(label2, timeLabel);
 
+		Label label3 = new Label("接触回数: ");
+		label3.setFont(new Font(20));
+		Label damageLabel = new Label("0");
+		damageLabel.setFont(new Font(20));
+
+		HBox hBox3 = new HBox();
+		hBox3.getChildren().addAll(label3, damageLabel);
+
 		VBox vBox = new VBox();
-		vBox.getChildren().addAll(hBox, hBox2);
+		vBox.getChildren().addAll(hBox, hBox2, hBox3);
 		vBox.setLayoutX(490);
 		vBox.setLayoutY(20);
 
@@ -55,6 +63,7 @@ public class GameScene {
 		monster.setMapData(map.getMapData());
 		monster.setMonsterImgView(monsImgView);
 		monster.setPointLabel(pointLabel);
+		monster.setDamageLabel(damageLabel);
 
 		Group pointGroup = map.getCircle(map.getMapData());
 
@@ -70,10 +79,10 @@ public class GameScene {
 
 		scene.setOnKeyPressed(event ->
 			moveEvent.setMoveEvent(event, playerImgView, pointGroup,
-						pointLabel, timer, scene));
+						pointLabel, timer, damageLabel, monsImgView, scene));
 		scene.setOnKeyReleased(event ->
 		moveEvent.setMoveEvent(event, playerImgView, pointGroup,
-				pointLabel, timer, scene));
+				pointLabel, timer, damageLabel, monsImgView, scene));
 	}
 }
 

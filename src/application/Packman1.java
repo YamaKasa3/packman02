@@ -9,7 +9,7 @@ public class Packman1 extends Application{
 	@Override
 	public void start(Stage stage) throws Exception{
 		stage.setTitle("ThePackman");
-		stage.setWidth(600);
+		stage.setWidth(620);
 		stage.setHeight(518);
 		StartScene sc = new StartScene();
 		Scene scene = sc.getScene();

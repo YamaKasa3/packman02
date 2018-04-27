@@ -23,6 +23,7 @@ public class Monster {
 	private int[][] mapData;
 	private ImageView monsImgView;
 	private Label pointLabel;
+	private Label damageLabel;
 	public Monster() {
 		setMonsterImage();
 	}
@@ -38,6 +39,9 @@ public class Monster {
 	}
 	public void setMonsterImgView(ImageView monsImgView) {
 		this.monsImgView = monsImgView;
+	}
+	public void setDamageLabel(Label damageLabel) {
+		this.damageLabel = damageLabel;
 	}
 	public void setMonsterImage() {
 		Path monsterPath = Paths.get("image/pipo-mons.png");
@@ -117,6 +121,8 @@ public class Monster {
 		int step = 0;
 		if(playerCol == monsCol && playerRow == monsRow) {
 			flag = false;
+			int temp = Integer.parseInt(damageLabel.getText()) + 1;
+			damageLabel.setText(Integer.toString(temp));
 			return 4;
 		}
 		while(flag) {
